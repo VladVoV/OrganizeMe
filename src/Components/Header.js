@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../Images/logo.png';
 import '../CSS/Header.css';
+import {Link} from "react-router-dom";
 
 function Header() {
     return (
@@ -15,17 +16,19 @@ function Header() {
             <nav className="navbar-nav ml-auto">
                 <ul className="navbar-nav">
                     <li className="nav-item">
-                        <a className="nav-link" href="#">To-Do List</a>
+                        <Link className="nav-link" to={'/to-do'}>
+                            <div>To-Do List</div>
+                        </Link>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Calendar</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Reminders</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#">Settings</a>
-                    </li>
+                    {/*<li className="nav-item">*/}
+                    {/*    <a className="nav-link" href="#">Calendar</a>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <a className="nav-link" href="#">Reminders</a>*/}
+                    {/*</li>*/}
+                    {/*<li className="nav-item">*/}
+                    {/*    <a className="nav-link" href="#">Settings</a>*/}
+                    {/*</li>*/}
                 </ul>
             </nav>
 
