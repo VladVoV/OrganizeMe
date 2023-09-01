@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 function ToDoListPage() {
-    const [tasks, setTasks] = useState([]); // State to hold tasks
-    const [newTask, setNewTask] = useState(''); // State to hold the new task input
+    const [tasks, setTasks] = useState([]);
+    const [newTask, setNewTask] = useState('');
 
-    // Function to add a new task
     const addTask = () => {
         if (newTask.trim() !== '') {
             setTasks([...tasks, newTask]);
@@ -12,7 +11,6 @@ function ToDoListPage() {
         }
     };
 
-    // Function to remove a task
     const removeTask = (index) => {
         const updatedTasks = tasks.filter((_, i) => i !== index);
         setTasks(updatedTasks);
