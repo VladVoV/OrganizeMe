@@ -1,20 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ToDoListPage() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
 
-    const addTask = () => {
-        if (newTask.trim() !== '') {
-            setTasks([...tasks, newTask]);
-            setNewTask('');
+
+    useEffect(() => {
+        // Fetch to-do items from the server
+        fetch('/api/todos')
+            .then((response) => response.json())
+            .then((data) => setTasks(data))
+            .catch((error) => console.error('Error fetching data:', error));
+    }, []);
+
+    const addTask = async () => {
+        try {
+            const response = await fetch('/api/todos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: newTask }),
+            });
+
+            if (response.status === 201) {
+                const task = await response.json();
+                setTasks([...tasks, task]);
+                setNewTask('');
+            }
+        } catch (error) {
+            console.error('Error adding to-do:', error);
         }
     };
 
-    const removeTask = (index) => {
-        const updatedTasks = tasks.filter((_, i) => i !== index);
-        setTasks(updatedTasks);
-    };
+    // const removeTask = (index) => {
+    //     const updatedTasks = tasks.filter((_, i) => i !== index);
+    //     setTasks(updatedTasks);
+    // };
 
     return (
         <div className="container mt-5">
@@ -34,13 +56,13 @@ function ToDoListPage() {
                 </div>
             </div>
             <ul className="list-group">
-                {tasks.map((task, index) => (
-                    <li className="list-group-item" key={index}>
-                        {task}
+                {tasks.map((task) => (
+                    <li className="list-group-item" key={task._id}>
+                        {task.text}
                         <button
                             type="button"
                             className="btn btn-danger btn-sm float-right"
-                            onClick={() => removeTask(index)}
+                            // onClick={() => removeTask(index)}
                         >
                             Delete
                         </button>
