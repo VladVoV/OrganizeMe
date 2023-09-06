@@ -33,10 +33,16 @@ function ToDoListPage() {
         }
     };
 
-    // const removeTask = (index) => {
-    //     const updatedTasks = tasks.filter((_, i) => i !== index);
-    //     setTasks(updatedTasks);
-    // };
+    const deleteTask = (taskId) => {
+        fetch(`/api/todos/${taskId}`, {
+            method: 'DELETE',
+        })
+            .then(() => {
+                const updatedTasks = tasks.filter((task) => task._id !== taskId);
+                setTasks(updatedTasks);
+            })
+            .catch((error) => console.error('Error deleting task:', error));
+    };
 
     return (
         <div className="container mt-5">
@@ -62,7 +68,7 @@ function ToDoListPage() {
                         <button
                             type="button"
                             className="btn btn-danger btn-sm float-right"
-                            // onClick={() => removeTask(index)}
+                            onClick={() => deleteTask(task._id)}
                         >
                             Delete
                         </button>

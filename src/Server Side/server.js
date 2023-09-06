@@ -40,14 +40,20 @@ app.get('/api/todos', async (req, res) => {
     }
 });
 
-app.delete('/api/todos', async (req, res) => {
+app.delete('/api/todos/:id', async (req, res) => {
     try {
-        const todos = await Todo.deleteOne();
-        res.status(200).json(todos);
+        const { id } = req.params;
+        const deletedTodo = await Todo.findByIdAndRemove(id);
+
+        if (!deletedTodo) {
+            return res.status(404).json({ error: 'Task not found' });
+        }
+
+        res.status(200).json(deletedTodo);
     } catch (error) {
         res.status(500).json({ error: 'Could not delete to-do item.' });
     }
-})
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
