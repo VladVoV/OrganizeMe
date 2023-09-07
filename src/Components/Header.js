@@ -20,9 +20,11 @@ function Header() {
                             <div>To-Do List</div>
                         </Link>
                     </li>
-                    {/*<li className="nav-item">*/}
-                    {/*    <a className="nav-link" href="#">Calendar</a>*/}
-                    {/*</li>*/}
+                    <li className="nav-item">
+                        <Link className="nav-link" to={'/calendar'}>
+                            <div>Calendar</div>
+                        </Link>
+                    </li>
                     {/*<li className="nav-item">*/}
                     {/*    <a className="nav-link" href="#">Reminders</a>*/}
                     {/*</li>*/}
