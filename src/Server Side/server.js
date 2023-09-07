@@ -55,6 +55,15 @@ app.delete('/api/todos/:id', async (req, res) => {
     }
 });
 
+app.delete('/api/todos', async (req, res) => {
+    try {
+        const deleteTodos = await Todo.deleteMany();
+        res.status(200).json(deleteTodos);
+    } catch (error) {
+        res.status(500).json({ error: 'Could not delete to-do items.' });
+    }
+})
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
