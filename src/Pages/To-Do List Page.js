@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Header from "../Components/Header";
 
 function ToDoListPage() {
     const [tasks, setTasks] = useState([]);
@@ -54,6 +55,8 @@ function ToDoListPage() {
     }
 
     return (
+        <div>
+        <Header/>
         <div className="container mt-5">
             <div className="d-flex justify-content-between">
                 <h1>To-Do List</h1>
@@ -96,6 +99,7 @@ function ToDoListPage() {
                     </li>
                 ))}
             </ul>
+        </div>
         </div>
     );
 }

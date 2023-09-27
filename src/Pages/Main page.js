@@ -1,20 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Header from "../Components/Header";
 
 function MainPage() {
-    const [message, setMessage] = useState('');
-
-    useEffect(() => {
-        // Make an HTTP GET request to the server-side route
-        fetch('/express_backend')
-            .then((response) => response.json())
-            .then((data) => {
-                setMessage(data.express);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
     return (
         <div>
             {/* Header */}
@@ -26,7 +13,6 @@ function MainPage() {
                     <div className="col-lg-12">
                         <div>
                             <h1>React Frontend</h1>
-                            <p>Message from Express Backend: {message}</p>
                         </div>
                         <h2>Welcome to the Organize Me!</h2>
                         <p>

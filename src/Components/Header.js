@@ -7,7 +7,9 @@ function Header() {
     return (
         <header className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="navbar-brand">
-                <img className={'logo-image'} src={logo} alt={'logo'}/>
+                <Link className="nav-link" to={'/'}>
+                    <img className={'logo-image'} src={logo} alt={'logo'}/>
+                </Link>
             </div>
 
             <h1 className="navbar-brand">Student Planner</h1>
