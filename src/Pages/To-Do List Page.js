@@ -1,30 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import Header from "../Components/Header";
+import Header from '../Components/Header';
+import axios from 'axios';
 
 function ToDoListPage() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
 
-
     useEffect(() => {
-        fetch('/api/todos')
-            .then((response) => response.json())
-            .then((data) => setTasks(data))
-            .catch((error) => console.error('Error fetching data:', error));
+        axios
+            .get('/api/todos')
+            .then((response) => {
+                setTasks(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching data:', error);
+            });
     }, []);
 
     const addTask = async () => {
         try {
-            const response = await fetch('/api/todos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: newTask }),
-            });
+            const response = await axios.post('/api/todos', { text: newTask });
 
             if (response.status === 201) {
-                const task = await response.json();
+                const task = response.data;
                 setTasks([...tasks, task]);
                 setNewTask('');
             }
@@ -34,9 +32,8 @@ function ToDoListPage() {
     };
 
     const deleteTask = (taskId) => {
-        fetch(`/api/todos/${taskId}`, {
-            method: 'DELETE',
-        })
+        axios
+            .delete(`/api/todos/${taskId}`)
             .then(() => {
                 const updatedTasks = tasks.filter((task) => task._id !== taskId);
                 setTasks(updatedTasks);
@@ -45,61 +42,59 @@ function ToDoListPage() {
     };
 
     const deleteAllTasks = () => {
-        fetch(`/api/todos`, {
-            method: 'DELETE',
-        })
+        axios
+            .delete('/api/todos')
             .then(() => {
-            setTasks([])
-        })
+                setTasks([]);
+            })
             .catch((error) => console.error('Error deleting tasks:', error));
-    }
+    };
 
     return (
         <div>
-        <Header/>
-        <div className="container mt-5">
-            <div className="d-flex justify-content-between">
-                <h1>To-Do List</h1>
-                {tasks.length === 0 ? null : (
-                    <button
-                        type="button"
-                        className="btn btn-danger btn-sm float-right"
-                        onClick={() => deleteAllTasks()}
-                    >
-                        Delete all tasks
-                    </button>
-                )}
-
-            </div>
-            <div className="input-group mb-3">
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Add a new task..."
-                    value={newTask}
-                    onChange={(e) => setNewTask(e.target.value)}
-                />
-                <div className="input-group-append">
-                    <button className="btn btn-primary" type="button" onClick={addTask}>
-                        Add
-                    </button>
-                </div>
-            </div>
-            <ul className="list-group">
-                {tasks.map((task) => (
-                    <li className="list-group-item" key={task._id}>
-                        {task.text}
+            <Header />
+            <div className="container mt-5">
+                <div className="d-flex justify-content-between">
+                    <h1>To-Do List</h1>
+                    {tasks.length === 0 ? null : (
                         <button
                             type="button"
                             className="btn btn-danger btn-sm float-right"
-                            onClick={() => deleteTask(task._id)}
+                            onClick={deleteAllTasks}
                         >
-                            Delete
+                            Delete all tasks
                         </button>
-                    </li>
-                ))}
-            </ul>
-        </div>
+                    )}
+                </div>
+                <div className="input-group mb-3">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Add a new task..."
+                        value={newTask}
+                        onChange={(e) => setNewTask(e.target.value)}
+                    />
+                    <div className="input-group-append">
+                        <button className="btn btn-primary" type="button" onClick={addTask}>
+                            Add
+                        </button>
+                    </div>
+                </div>
+                <ul className="list-group">
+                    {tasks.map((task) => (
+                        <li className="list-group-item" key={task._id}>
+                            {task.text}
+                            <button
+                                type="button"
+                                className="btn btn-danger btn-sm float-right"
+                                onClick={() => deleteTask(task._id)}
+                            >
+                                Delete
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 }

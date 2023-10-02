@@ -16,7 +16,14 @@ const todoSchema = new mongoose.Schema({
     completed: Boolean,
 });
 
+const calendarEventSchema = new mongoose.Schema({
+    title: String,
+    date: Date,
+    description: String,
+});
+
 const Todo = mongoose.model('Todo', todoSchema);
+const CalendarEvent = mongoose.model('CalendarEvent', calendarEventSchema);
 
 app.use(bodyParser.json());
 
@@ -63,6 +70,24 @@ app.delete('/api/todos', async (req, res) => {
         res.status(500).json({ error: 'Could not delete to-do items.' });
     }
 })
+
+app.get('/api/calendar', async (req, res) => {
+    try {
+       const calendarEvents = await CalendarEvent.find();
+       res.status(200).json(calendarEvents);
+    } catch (error) {
+        res.status(500).json({ error: 'Could not retrieve calendar items.' });
+    }
+})
+// app.post('/api/calendar', async (req, res) => {
+//     try {
+//         const calendarEvents = new CalendarEvent({ title: 'Test 3', date: '2023-10-10', description: 'ha sDjkhaS KJDhakS DHjaS HD' });
+//         await calendarEvents.save();
+//         res.status(201).json(calendarEvents);
+//     } catch (error) {
+//         res.status(500).json({ error: 'Could not create to-do item.' });
+//     }
+// });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
