@@ -79,15 +79,17 @@ app.get('/api/calendar', async (req, res) => {
         res.status(500).json({ error: 'Could not retrieve calendar items.' });
     }
 })
-// app.post('/api/calendar', async (req, res) => {
-//     try {
-//         const calendarEvents = new CalendarEvent({ title: 'Test 3', date: '2023-10-10', description: 'ha sDjkhaS KJDhakS DHjaS HD' });
-//         await calendarEvents.save();
-//         res.status(201).json(calendarEvents);
-//     } catch (error) {
-//         res.status(500).json({ error: 'Could not create to-do item.' });
-//     }
-// });
+app.post('/api/calendar', async (req, res) => {
+    try {
+        const { title, date, description } = req.body;
+        const calendarEvent = new CalendarEvent({ title, date, description });
+        await calendarEvent.save();
+        res.status(201).json(calendarEvent);
+    } catch (error) {
+        res.status(500).json({ error: 'Could not create calendar event.' });
+    }
+});
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
