@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Header from "../Components/Header";
+import UserService from "../Services/user.service";
 
 function MainPage() {
+    const [content, setContent] = useState("");
+
+    useEffect(() => {
+        UserService.getPublicContent().then(
+            (response) => {
+                setContent(response.data);
+            },
+            (error) => {
+                const _content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
+
+                setContent(_content);
+            }
+        );
+    }, []);
+
     return (
         <div>
-            {/* Header */}
             <Header />
-
-            {/* Main Content */}
+            <h3>{content}</h3>
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-lg-12">
