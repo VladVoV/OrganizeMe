@@ -1,102 +1,54 @@
-import React, { useState, useRef } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { isEmail } from "validator";
 
 import AuthService from "../Services/auth.service";
 
-const required = (value) => {
-    if (!value) {
-        return (
-            <div className="invalid-feedback d-block">
-                This field is required!
-            </div>
-        );
-    }
-};
-
-const validEmail = (value) => {
-    if (!isEmail(value)) {
-        return (
-            <div className="invalid-feedback d-block">
-                This is not a valid email.
-            </div>
-        );
-    }
-};
-
-const vusername = (value) => {
-    if (value.length < 3 || value.length > 20) {
-        return (
-            <div className="invalid-feedback d-block">
-                The username must be between 3 and 20 characters.
-            </div>
-        );
-    }
-};
-
-const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
-        return (
-            <div className="invalid-feedback d-block">
-                The password must be between 6 and 40 characters.
-            </div>
-        );
-    }
-};
-
-const Register = (props) => {
-    const form = useRef();
-    const checkBtn = useRef();
-
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const Register = () => {
+    const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
-    const onChangeUsername = (e) => {
-        const username = e.target.value;
-        setUsername(username);
-    };
-
-    const onChangeEmail = (e) => {
-        const email = e.target.value;
-        setEmail(email);
-    };
-
-    const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-
+    const onSubmit = async (data) => {
         setMessage("");
         setSuccessful(false);
 
-        form.current.validateAll();
+        try {
+            const response = await AuthService.register(data.username, data.email, data.password);
+            setMessage(response.data.message);
+            setSuccessful(true);
+        } catch (error) {
+            const resMessage =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
 
-        if (checkBtn.current.context._errors.length === 0) {
-            AuthService.register(username, email, password).then(
-                (response) => {
-                    setMessage(response.data.message);
-                    setSuccessful(true);
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
+            if (resMessage.includes("Username")) {
+                setError("username", {
+                    type: "manual",
+                    message: resMessage,
+                });
+            }
 
-                    setMessage(resMessage);
-                    setSuccessful(false);
-                }
-            );
+            if (resMessage.includes("Email")) {
+                setError("email", {
+                    type: "manual",
+                    message: resMessage,
+                });
+            }
+
+            if (resMessage.includes("Password")) {
+                setError("password", {
+                    type: "manual",
+                    message: resMessage,
+                });
+            }
+
+            setSuccessful(false);
         }
     };
 
@@ -109,43 +61,43 @@ const Register = (props) => {
                     className="profile-img-card"
                 />
 
-                <Form onSubmit={handleRegister} ref={form}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     {!successful && (
                         <div>
                             <div className="form-group">
                                 <label htmlFor="username">Username</label>
-                                <Input
+                                <input
                                     type="text"
-                                    className="form-control"
-                                    name="username"
-                                    value={username}
-                                    onChange={onChangeUsername}
-                                    validations={[required, vusername]}
+                                    className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                                    {...register('username', { required: 'This field is required!' })}
                                 />
+                                <div className="invalid-feedback">{errors.username?.message}</div>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="email">Email</label>
-                                <Input
+                                <input
                                     type="text"
-                                    className="form-control"
-                                    name="email"
-                                    value={email}
-                                    onChange={onChangeEmail}
-                                    validations={[required, validEmail]}
+                                    className={`form-control ${errors.email ? 'is-invalid' : ''}`}
+                                    {...register('email', {
+                                        required: 'This field is required!',
+                                        validate: value => isEmail(value) || 'This is not a valid email.'
+                                    })}
                                 />
+                                <div className="invalid-feedback">{errors.email?.message}</div>
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="password">Password</label>
-                                <Input
+                                <input
                                     type="password"
-                                    className="form-control"
-                                    name="password"
-                                    value={password}
-                                    onChange={onChangePassword}
-                                    validations={[required, vpassword]}
+                                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                    {...register('password', {
+                                        required: 'This field is required!',
+                                        validate: value => (value.length >= 6 && value.length <= 40) || 'The password must be between 6 and 40 characters.'
+                                    })}
                                 />
+                                <div className="invalid-feedback">{errors.password?.message}</div>
                             </div>
 
                             <div className="form-group">
@@ -166,8 +118,7 @@ const Register = (props) => {
                             </div>
                         </div>
                     )}
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
-                </Form>
+                </form>
             </div>
         </div>
     );
