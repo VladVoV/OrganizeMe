@@ -1,70 +1,43 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
 
 import AuthService from "../Services/auth.service";
 
-const required = (value) => {
-    if (!value) {
-        return (
-            <div className="invalid-feedback d-block">
-                This field is required!
-            </div>
-        );
-    }
-};
-
 const Login = () => {
-    const form = useRef();
-    const checkBtn = useRef();
-
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-
     const navigate = useNavigate();
 
-    const onChangeUsername = (e) => {
-        const username = e.target.value;
-        setUsername(username);
-    };
-
-    const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
-    const handleLogin = (e) => {
-        e.preventDefault();
-
+    const onSubmit = async (data) => {
         setMessage("");
         setLoading(true);
 
-        form.current.validateAll();
-        if (checkBtn.current.context._errors.length === 0) {
-            AuthService.login(username, password).then(
-                () => {
-                    navigate("/profile");
-                    window.location.reload();
-                },
-                (error) => {
-                    const resMessage =
-                        (error.response &&
-                            error.response.data &&
-                            error.response.data.message) ||
-                        error.message ||
-                        error.toString();
+        try {
+            await AuthService.login(data.username, data.password);
+            navigate("/profile");
+            window.location.reload();
+        } catch (error) {
+            const resMessage =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
 
-                    setLoading(false);
-                    setMessage(resMessage);
-                }
-            );
-        }
-          else {
+            setError("username", {
+                type: "manual",
+                message: resMessage,
+            });
+
+            setError("password", {
+                type: "manual",
+                message: resMessage,
+            });
+
             setLoading(false);
+            setMessage(resMessage);
         }
     };
 
@@ -77,29 +50,25 @@ const Login = () => {
                     className="profile-img-card"
                 />
 
-                <Form onSubmit={handleLogin} ref={form}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
-                        <Input
+                        <input
                             type="text"
-                            className="form-control"
-                            name="username"
-                            value={username}
-                            onChange={onChangeUsername}
-                            validations={[required]}
+                            className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                            {...register('username', { required: 'This field is required!' })}
                         />
+                        <div className="invalid-feedback">{errors.username?.message}</div>
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <Input
+                        <input
                             type="password"
-                            className="form-control"
-                            name="password"
-                            value={password}
-                            onChange={onChangePassword}
-                            validations={[required]}
+                            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                            {...register('password', { required: 'This field is required!' })}
                         />
+                        <div className="invalid-feedback">{errors.password?.message}</div>
                     </div>
 
                     <div className="form-group">
@@ -118,8 +87,7 @@ const Login = () => {
                             </div>
                         </div>
                     )}
-                    <CheckButton style={{ display: "none" }} ref={checkBtn} />
-                </Form>
+                </form>
             </div>
         </div>
     );
