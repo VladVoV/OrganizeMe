@@ -89,7 +89,7 @@ function Header() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <a href="/login" className="nav-link" onClick={logOut}>
+                                <a href="/Client/src/Components/Login" className="nav-link" onClick={logOut}>
                                     LogOut
                                 </a>
                             </li>
