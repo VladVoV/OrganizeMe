@@ -1,3 +1,3 @@
 To start project: 
-cd Client
-npm start
+- cd Client
+- npm start
