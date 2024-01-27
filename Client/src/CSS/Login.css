@@ -1,0 +1,13 @@
+.login-container {
+    width: 25vw;
+    margin: 7% auto 0;
+    padding: 5% 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-form > * {
+    margin: 15% 0;
+}
+
+

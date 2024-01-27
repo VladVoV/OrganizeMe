@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import '../CSS/Login.css'
 
 import AuthService from "../Services/auth.service";
+import Header from "./Header";
 
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
@@ -42,52 +44,57 @@ const Login = () => {
     };
 
     return (
-        <div className="col-md-12">
-            <div className="card card-container">
-                <img
-                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                    alt="profile-img"
-                    className="profile-img-card"
-                />
-
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input
-                            type="text"
-                            className={`form-control ${errors.username ? 'is-invalid' : ''}`}
-                            {...register('username', { required: 'This field is required!' })}
+        <div>
+            <Header/>
+                <div className="col-md-12">
+                    <div
+                        className="card card-container login-container"
+                    >
+                        <img
+                            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                            alt="profile-img"
+                            className="profile-img-card rounded-circle w-25 h-25"
                         />
-                        <div className="invalid-feedback">{errors.username?.message}</div>
-                    </div>
 
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-                            {...register('password', { required: 'This field is required!' })}
-                        />
-                        <div className="invalid-feedback">{errors.password?.message}</div>
-                    </div>
-
-                    <div className="form-group">
-                        <button className="btn btn-primary btn-block" disabled={loading}>
-                            {loading && (
-                                <span className="spinner-border spinner-border-sm"></span>
-                            )}
-                            <span>Login</span>
-                        </button>
-                    </div>
-
-                    {message && (
-                        <div className="form-group">
-                            <div className="alert alert-danger" role="alert">
-                                {message}
+                        <form onSubmit={handleSubmit(onSubmit)} className="login-form">
+                            <div className="form-group">
+                                <label htmlFor="username">Username</label>
+                                <input
+                                    type="text"
+                                    className={`form-control ${errors.username ? 'is-invalid' : ''}`}
+                                    {...register('username', { required: 'This field is required!' })}
+                                />
+                                <div className="invalid-feedback">{errors.username?.message}</div>
                             </div>
-                        </div>
-                    )}
-                </form>
+
+                            <div className="form-group">
+                                <label htmlFor="password">Password</label>
+                                <input
+                                    type="password"
+                                    className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                    {...register('password', { required: 'This field is required!' })}
+                                />
+                                <div className="invalid-feedback">{errors.password?.message}</div>
+                            </div>
+
+                            <div className="form-group">
+                                <button className="btn btn-primary btn-block btn-login" disabled={loading}>
+                                    {loading && (
+                                        <span className="spinner-border spinner-border-sm"></span>
+                                    )}
+                                    <span>Login</span>
+                                </button>
+                            </div>
+
+                            {message && (
+                                <div className="form-group">
+                                    <div className="alert alert-danger" role="alert">
+                                        {message}
+                                    </div>
+                                </div>
+                            )}
+                        </form>
+                    </div>
             </div>
         </div>
     );
