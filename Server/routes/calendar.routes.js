@@ -1,4 +1,5 @@
 const controller = require("../controllers/calendar.controller");
+const authJwt = require("../middlewares/authJwt");
 
 module.exports = function(app) {
     app.use(function (req, res, next) {
@@ -8,6 +9,8 @@ module.exports = function(app) {
         );
         next();
     });
+
+    app.use("/api/calendar", authJwt.verifyToken)
 
     app.get("/api/calendar", controller.retrieveCalendar)
 

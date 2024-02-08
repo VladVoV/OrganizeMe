@@ -16,7 +16,6 @@ function MyCalendar() {
     });
 
     useEffect(() => {
-        // Make the API request to fetch calendar data when the component mounts
         axios.get('/api/calendar')
             .then(response => {
                 setCalendarData(response.data);
@@ -27,9 +26,8 @@ function MyCalendar() {
     }, []);
 
     useEffect(() => {
-        // Filter and set the notes for the selected date
         const filteredNotes = calendarData.filter(event => {
-            const eventDate = new Date(event.date); // Assuming 'date' is the date property in your API data
+            const eventDate = new Date(event.date);
             return eventDate.toDateString() === date.toDateString();
         });
         setSelectedNotes(filteredNotes);
@@ -44,10 +42,8 @@ function MyCalendar() {
 
         axios.post('/api/calendar', newEvent)
             .then(response => {
-                // Handle success, maybe update the local state or reset the form
                 console.log('Event added successfully:', response.data);
 
-                // Reset the form to its initial state
                 setNewEvent({
                     title: '',
                     description: '',
