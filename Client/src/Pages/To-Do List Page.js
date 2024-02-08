@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../Components/Header';
 import axios from 'axios';
+import AuthService from "../Services/auth.service";
 
 function ToDoListPage() {
     const [tasks, setTasks] = useState([]);
@@ -19,7 +20,7 @@ function ToDoListPage() {
 
     const addTask = async () => {
         try {
-            const response = await axios.post('/api/todos', { text: newTask });
+            const response = await axios.post('/api/todos', { text: newTask});
 
             if (response.status === 201) {
                 const task = response.data;
