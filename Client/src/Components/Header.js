@@ -50,16 +50,20 @@ function Header() {
 
             <nav className="navbar-nav ml-auto">
                 <ul className="navbar-nav">
+                    {currentUser && (
                     <li className="nav-item">
                         <Link className="nav-link" to={'/to-do'}>
                             <div>To-Do List</div>
                         </Link>
                     </li>
-                    <li className="nav-item">
+                    )}
+                    {currentUser && (
+                        <li className="nav-item">
                         <Link className="nav-link" to={'/calendar'}>
                             <div>Calendar</div>
                         </Link>
                     </li>
+                    )}
                     {showModeratorBoard && (
                         <li className="nav-item">
                             <Link to={"/mod"} className="nav-link">
