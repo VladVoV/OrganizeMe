@@ -6,6 +6,10 @@ const CalendarEvent = mongoose.model(
         title: String,
         date: Date,
         description: String,
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
     })
 )
 

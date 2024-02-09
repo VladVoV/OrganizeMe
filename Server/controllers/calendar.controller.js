@@ -3,7 +3,8 @@ const CalendarEvent = db.calendar
 
 exports.retrieveCalendar = async (req, res) => {
     try {
-        const calendarEvents = await CalendarEvent.find();
+        const userId = req.userId;
+        const calendarEvents = await CalendarEvent.find({user: userId});
         res.status(200).json(calendarEvents);
     } catch (error) {
         res.status(500).json({ error: 'Could not retrieve calendar items.' });
@@ -13,7 +14,8 @@ exports.retrieveCalendar = async (req, res) => {
 exports.createCalendarEvent = async (req, res) => {
     try {
         const { title, date, description } = req.body;
-        const calendarEvent = new CalendarEvent({ title, date, description });
+        const userId = req.userId;
+        const calendarEvent = new CalendarEvent({ title, date, description, user: userId });
         await calendarEvent.save();
         res.status(201).json(calendarEvent);
     } catch (error) {

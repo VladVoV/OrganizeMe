@@ -24,7 +24,6 @@ function MainPage() {
     return (
         <div>
             <Header />
-            <h3>{content}</h3>
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-lg-12">
