@@ -27,10 +27,7 @@ function MainPage() {
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-lg-12">
-                        <div>
-                            <h1>React Frontend</h1>
-                        </div>
-                        <h2>Welcome to the Organize Me!</h2>
+                        <h1>Welcome to the Organize Me!</h1>
                         <p>
                             The Organize Me is a tool to help you stay organized and manage your tasks, assignments,
                             and important events efficiently throughout your academic journey.
