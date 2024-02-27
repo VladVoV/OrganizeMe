@@ -62,6 +62,9 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/todo.routes')(app);
 require('./routes/calendar.routes')(app);
+require('./routes/posts.routes')(app);
+require('./routes/replies.routes')(app);
+require('./routes/tags.routes')(app);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
