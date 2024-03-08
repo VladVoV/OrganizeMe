@@ -9,7 +9,7 @@ module.exports = function(app) {
         next();
     });
 
-    app.get("/api/tags/", controller.retrieveTag())
+    app.get("/api/tags/", controller.retrieveTag)
 
-    app.post("/api/tags/create", controller.createTag())
+    app.post("/api/tags/create", controller.createTag)
 };

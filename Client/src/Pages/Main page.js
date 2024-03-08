@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Components/Header";
+import Navbar from "../Components/Navbar";
 import UserService from "../Services/user.service";
 
 function MainPage() {
@@ -23,7 +23,7 @@ function MainPage() {
 
     return (
         <div>
-            <Header />
+            <Navbar />
             <div className="container mt-4">
                 <div className="row">
                     <div className="col-lg-12">

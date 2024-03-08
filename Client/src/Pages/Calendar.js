@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../Components/Header";
+import Navbar from "../Components/Navbar";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import axios from 'axios';
@@ -57,7 +57,7 @@ function MyCalendar() {
 
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <div className="calendar--container">
                 <h2>My Calendar</h2>
                 <Calendar

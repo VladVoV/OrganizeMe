@@ -1,4 +1,5 @@
 const controller = require("../controllers/posts.controller");
+const {authJwt} = require("../middlewares");
 
 module.exports = function(app) {
     app.use(function (req, res, next) {
@@ -8,6 +9,8 @@ module.exports = function(app) {
         );
         next();
     });
+
+    app.use("/api/posts/", authJwt.verifyToken)
 
     app.get("/api/posts/", controller.retrievePosts)
 

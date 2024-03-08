@@ -10,6 +10,8 @@ import Profile from "./Components/Profile";
 import BoardUser from "./Pages/BoardUser";
 import BoardModerator from "./Pages/BoardModerator";
 import BoardAdmin from "./Pages/BoardAdmin";
+import Dashboard from "./Pages/Dashboard";
+import CreatePost from "./Pages/CreatePost";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route path="/user" element={<BoardUser/>}/>
           <Route path="/mod" element={<BoardModerator/>}/>
           <Route path="/admin" element={<BoardAdmin/>}/>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/new-post" element={<CreatePost/>}/>
       </Routes>
         );
 }

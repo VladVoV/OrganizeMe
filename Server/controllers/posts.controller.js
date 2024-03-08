@@ -35,7 +35,7 @@ exports.createPost = async (req, res) => {
         title: req.body.title,
         tags: tags_array,
         description: req.body.description,
-        author: req.user._id,
+        author: req.userId,
         views: 1,
     });
     try {
@@ -52,9 +52,9 @@ exports.updateLike = async (req, res) => {
     if (post.author === req.user._id)
         return res.status(400).send("You can't upvote your own post");
     const upvoteArray = post.upvotes;
-    const index = upvoteArray.indexOf(req.user._id);
+    const index = upvoteArray.indexOf(req.userId);
     if (index === -1) {
-        upvoteArray.push(req.user._id);
+        upvoteArray.push(req.userId);
     } else {
         upvoteArray.splice(index, 1);
     }

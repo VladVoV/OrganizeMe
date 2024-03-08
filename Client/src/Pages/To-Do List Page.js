@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import Header from '../Components/Header';
+import Navbar from '../Components/Navbar';
 import todoService from '../Services/todos.service';
 
 function ToDoListPage() {
@@ -91,7 +91,7 @@ function ToDoListPage() {
 
     return (
         <div>
-            <Header />
+            <Navbar />
             <div className="container mt-5">
                 <div className="d-flex justify-content-between">
                     <h1>To-Do List</h1>

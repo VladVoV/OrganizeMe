@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieSession = require("cookie-session");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 
@@ -27,7 +28,7 @@ const db = require("./models");
 const Role = db.role;
 
 db.mongoose
-    .connect('mongodb+srv://vladvojch:DijavVDLMRvhogtm@cluster0.z6gxgmw.mongodb.net/to-do_list', {
+    .connect(process.env.DB_MONGOOSE, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
