@@ -12,13 +12,13 @@ exports.createReply = async (req, res) => {
     const reply = new Reply({
         post: req.params.id,
         comment: req.body.comment,
-        author: req.user._id,
+        author: req.userId,
     });
     try {
         await reply.save();
         const reply_populated = await Reply.find({ _id: reply._id }).populate(
             "author",
-            "name -_id"
+            "username"
         );
         res.send(reply_populated);
     } catch (ex) {
@@ -34,7 +34,7 @@ exports.retrieveReply = async (req, res) => {
         }
         const replies = await Reply.find({ post: req.params.id }).populate(
             "author",
-            "name username"
+            "username"
         );
         res.send(replies);
 }
@@ -42,12 +42,12 @@ exports.retrieveReply = async (req, res) => {
 exports.updateReply = async (req, res) => {
     const reply = await Reply.findById(req.params.id);
     if (!reply) return res.status(400).send("reply doesn't exists");
-    if (reply.author === req.user._id)
+    if (reply.author === req.userId)
         return res.status(400).send("You can't upvote your own reply");
     const upvoteArray = reply.upvotes;
-    const index = upvoteArray.indexOf(req.user._id);
+    const index = upvoteArray.indexOf(req.userId);
     if (index === -1) {
-        upvoteArray.push(req.user._id);
+        upvoteArray.push(req.userId);
     } else {
         upvoteArray.splice(index, 1);
     }
@@ -55,7 +55,7 @@ exports.updateReply = async (req, res) => {
     const result = await reply.save();
     const reply_new = await Reply.find({ _id: reply._id }).populate(
         "author",
-        "name username"
+        "username"
     );
     res.send(reply_new);
 }

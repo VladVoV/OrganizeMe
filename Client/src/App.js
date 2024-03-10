@@ -12,6 +12,7 @@ import BoardModerator from "./Pages/BoardModerator";
 import BoardAdmin from "./Pages/BoardAdmin";
 import Dashboard from "./Pages/Dashboard";
 import CreatePost from "./Pages/CreatePost";
+import PostPage from "./Pages/PostPage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/admin" element={<BoardAdmin/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/new-post" element={<CreatePost/>}/>
+          <Route path="/post/:id" element={<PostPage/>}/>
       </Routes>
         );
 }

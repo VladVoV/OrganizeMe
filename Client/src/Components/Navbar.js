@@ -120,13 +120,6 @@ function Navbar() {
                             </Link>
                         </li>
                     )}
-                    {currentUser && (
-                        <li className="nav-item">
-                            <Link to={"/new-post"} className="nav-link">
-                                Create Post
-                            </Link>
-                        </li>
-                    )}
                 </ul>
             </nav>
 

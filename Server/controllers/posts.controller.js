@@ -2,7 +2,7 @@ const { Post, validatePost } = require("../models/post.model");
 const {Tag} = require("../models/tag.model");
 
 exports.retrievePosts = async (req, res) => {
-    let all_posts = await Post.find().populate("author", "name -_id");
+    let all_posts = await Post.find().populate("author", "username");
     res.send(all_posts);
 }
 
@@ -10,7 +10,7 @@ exports.retrievePostById = async (req, res) => {
     try {
         const post = await Post.find({ _id: req.params.id }).populate(
             "author",
-            "name username"
+            "username"
         );
         const views = post[0].views;
         post[0].views = views + 1;
@@ -49,7 +49,7 @@ exports.createPost = async (req, res) => {
 exports.updateLike = async (req, res) => {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(400).send("Post doesn't exists");
-    if (post.author === req.user._id)
+    if (post.author === req.userId)
         return res.status(400).send("You can't upvote your own post");
     const upvoteArray = post.upvotes;
     const index = upvoteArray.indexOf(req.userId);
@@ -62,7 +62,7 @@ exports.updateLike = async (req, res) => {
     const result = await post.save();
     const post_new = await Post.find({ _id: post._id }).populate(
         "author",
-        "name username"
+        "username"
     );
     res.send(post_new);
 }

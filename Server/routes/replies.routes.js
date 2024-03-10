@@ -1,4 +1,5 @@
 const controller = require("../controllers/replies.controller");
+const {authJwt} = require("../middlewares");
 
 module.exports = function(app) {
     app.use(function (req, res, next) {
@@ -8,6 +9,8 @@ module.exports = function(app) {
         );
         next();
     });
+
+    app.use("/api/replies/", authJwt.verifyToken)
 
     app.get("/api/replies/:id", controller.retrieveReply)
 
