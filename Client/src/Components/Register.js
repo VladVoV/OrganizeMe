@@ -5,7 +5,7 @@ import { isEmail } from "validator";
 import '../CSS/Register.css'
 
 import AuthService from "../Services/auth.service";
-import Header from "./Header";
+import Navbar from "./Navbar";
 
 const Register = () => {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
@@ -56,7 +56,7 @@ const Register = () => {
 
     return (
         <div>
-        <Header/>
+        <Navbar/>
             <div className="col-md-12">
                 <div className="card card-container register-container">
                     <img

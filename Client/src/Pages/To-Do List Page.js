@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../Components/Header';
-import axios from 'axios';
-import AuthService from "../Services/auth.service";
+import { useLocation } from 'react-router-dom';
+import Navbar from '../Components/Navbar';
+import todoService from '../Services/todos.service';
 
 function ToDoListPage() {
     const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
+    let [notificationTime, setNotificationTime] = useState(0);
+    const location = useLocation();
 
     useEffect(() => {
-        axios
-            .get('/api/todos')
-            .then((response) => {
-                setTasks(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            });
+        todoService.fetchTodos()
+            .then((response) => setTasks(response.data))
+            .catch((error) => console.error('Error fetching data:', error));
     }, []);
 
     const addTask = async () => {
         try {
-            const response = await axios.post('/api/todos', { text: newTask});
+            const response = await todoService.createTodo(newTask);
 
             if (response.status === 201) {
                 const task = response.data;
@@ -32,28 +29,69 @@ function ToDoListPage() {
         }
     };
 
-    const deleteTask = (taskId) => {
-        axios
-            .delete(`/api/todos/${taskId}`)
-            .then(() => {
-                const updatedTasks = tasks.filter((task) => task._id !== taskId);
-                setTasks(updatedTasks);
-            })
-            .catch((error) => console.error('Error deleting task:', error));
+    const deleteTask = async (taskId) => {
+        try {
+            await todoService.deleteTodo(taskId);
+            const updatedTasks = tasks.filter((task) => task._id !== taskId);
+            setTasks(updatedTasks);
+        } catch (error) {
+            console.error('Error deleting task:', error);
+        }
     };
 
-    const deleteAllTasks = () => {
-        axios
-            .delete('/api/todos')
-            .then(() => {
-                setTasks([]);
-            })
-            .catch((error) => console.error('Error deleting tasks:', error));
+    const deleteAllTasks = async () => {
+        try {
+            await todoService.deleteAllTodos();
+            setTasks([]);
+        } catch (error) {
+            console.error('Error deleting tasks:', error);
+        }
     };
+
+    const handleNotification = (taskId) => {
+        if (window.self !== window.top) {
+            window.open(location.href);
+            return;
+        }
+
+        const userEnteredTime = prompt("Enter the time for notification (in seconds):");
+        notificationTime = parseInt(userEnteredTime, 10);
+
+        if (isNaN(notificationTime) || notificationTime <= 0) {
+            alert("Invalid time entered. Please enter a positive number.");
+            return;
+        }
+
+        const selectedTask = tasks.find((task) => task._id === taskId);
+
+        if (!selectedTask) {
+            alert("Task not found. Please select a valid task.");
+            return;
+        }
+
+        setNotificationTime(notificationTime);
+
+        setTimeout(() => {
+            if (Notification && Notification.permission === "granted") {
+                const n = new Notification(`Task notification: ${selectedTask.text}`);
+            } else if (Notification && Notification.permission !== "denied") {
+                Notification.requestPermission().then((status) => {
+                    if (status === "granted") {
+                        const n = new Notification(`Task notification: ${selectedTask.text}`);
+                    } else {
+                        alert("Please allow notifications to receive task notifications.");
+                    }
+                });
+            } else {
+                alert("Please allow notifications to receive task notifications.");
+            }
+        }, notificationTime * 1000);
+    };
+
 
     return (
         <div>
-            <Header />
+            <Navbar />
             <div className="container mt-5">
                 <div className="d-flex justify-content-between">
                     <h1>To-Do List</h1>
@@ -91,6 +129,13 @@ function ToDoListPage() {
                                 onClick={() => deleteTask(task._id)}
                             >
                                 Delete
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-success btn-sm float-right mr-2"
+                                onClick={() => handleNotification(task._id)}
+                            >
+                                Notify
                             </button>
                         </li>
                     ))}

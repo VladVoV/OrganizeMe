@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieSession = require("cookie-session");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 
@@ -27,7 +28,7 @@ const db = require("./models");
 const Role = db.role;
 
 db.mongoose
-    .connect('mongodb+srv://vladvojch:DijavVDLMRvhogtm@cluster0.z6gxgmw.mongodb.net/to-do_list', {
+    .connect(process.env.DB_MONGOOSE, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -62,6 +63,9 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/todo.routes')(app);
 require('./routes/calendar.routes')(app);
+require('./routes/posts.routes')(app);
+require('./routes/replies.routes')(app);
+require('./routes/tags.routes')(app);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));

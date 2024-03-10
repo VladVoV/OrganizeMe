@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import '../CSS/Login.css'
 
 import AuthService from "../Services/auth.service";
-import Header from "./Header";
+import Navbar from "./Navbar";
 
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
@@ -45,7 +45,7 @@ const Login = () => {
 
     return (
         <div>
-            <Header/>
+            <Navbar/>
                 <div className="col-md-12">
                     <div
                         className="card card-container login-container"

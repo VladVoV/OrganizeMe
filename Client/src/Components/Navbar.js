@@ -8,7 +8,7 @@ import AuthService from "../Services/auth.service";
 import EventBus from "../Common/EventBus";
 
 
-function Header() {
+function Navbar() {
     const [showModeratorBoard, setShowModeratorBoard] = useState(false);
     const [showAdminBoard, setShowAdminBoard] = useState(false);
     const [currentUser, setCurrentUser] = useState(undefined);
@@ -51,18 +51,18 @@ function Header() {
             <nav className="navbar-nav ml-auto">
                 <ul className="navbar-nav">
                     {currentUser && (
-                    <li className="nav-item">
-                        <Link className="nav-link" to={'/to-do'}>
-                            <div>To-Do List</div>
-                        </Link>
-                    </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to={'/to-do'}>
+                                <div>To-Do List</div>
+                            </Link>
+                        </li>
                     )}
                     {currentUser && (
                         <li className="nav-item">
                         <Link className="nav-link" to={'/calendar'}>
                             <div>Calendar</div>
                         </Link>
-                    </li>
+                        </li>
                     )}
                     {showModeratorBoard && (
                         <li className="nav-item">
@@ -113,24 +113,21 @@ function Header() {
                             </li>
                         </div>
                     )}
-                    {/*<li className="nav-item">*/}
-                    {/*    <a className="nav-link" href="#">Reminders</a>*/}
-                    {/*</li>*/}
-                    {/*<li className="nav-item">*/}
-                    {/*    <a className="nav-link" href="#">Settings</a>*/}
-                    {/*</li>*/}
+                    {currentUser && (
+                        <li className="nav-item">
+                            <Link to={"/dashboard"} className="nav-link">
+                                Dashboard
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </nav>
 
-            {/* User Profile */}
             <div className="navbar-text">
-                {/* User profile details */}
             </div>
 
-            {/* Other header elements */}
-            {/* Search bar, date display, notifications, etc. */}
         </header>
     );
 }
 
-export default Header;
+export default Navbar;
