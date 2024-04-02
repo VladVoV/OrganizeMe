@@ -1,9 +1,9 @@
 import React from "react";
 import Joi from "joi-browser";
 import { ToastContainer, toast } from "react-toastify";
-import Input from "../Common/Input";
-import Form from "../Common/Form";
-import { createPost } from "../Services/postCreate.service";
+import Input from "../../Common/Input";
+import Form from "../../Common/Form";
+import { createPost } from "../../Services/postCreate.service";
 import axios from "axios";
 
 class NewPost extends Form {

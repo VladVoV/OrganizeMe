@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { isEmail } from "validator";
-import '../CSS/Register.css'
+import '../../CSS/User/Register.css'
 
-import AuthService from "../Services/auth.service";
-import Navbar from "./Navbar";
+import AuthService from "../../Services/auth.service";
+import Navbar from "../Navbar";
 
 const Register = () => {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();

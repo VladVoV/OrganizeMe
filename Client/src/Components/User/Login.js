@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import '../CSS/Login.css'
+import '../../CSS/User/Login.css'
 
-import AuthService from "../Services/auth.service";
-import Navbar from "./Navbar";
+import AuthService from "../../Services/auth.service";
+import Navbar from "../Navbar";
 
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();

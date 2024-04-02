@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import UserService from "../Services/user.service";
-import EventBus from "../Common/EventBus";
+import UserService from "../../Services/user.service";
+import EventBus from "../../Common/EventBus";
 
 const BoardAdmin = () => {
     const [content, setContent] = useState("");

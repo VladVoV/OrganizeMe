@@ -59,6 +59,13 @@ function Navbar() {
                     )}
                     {currentUser && (
                         <li className="nav-item">
+                            <Link className="nav-link" to={'/to-do-create'}>
+                                <div>To-Do List Create</div>
+                            </Link>
+                        </li>
+                    )}
+                    {currentUser && (
+                        <li className="nav-item">
                         <Link className="nav-link" to={'/calendar'}>
                             <div>Calendar</div>
                         </Link>

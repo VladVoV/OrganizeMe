@@ -1,6 +1,6 @@
 import React from "react";
-import AuthService from "../Services/auth.service";
-import Navbar from "./Navbar";
+import AuthService from "../../Services/auth.service";
+import Navbar from "../Navbar";
 
 const Profile = () => {
     const currentUser = AuthService.getCurrentUser();

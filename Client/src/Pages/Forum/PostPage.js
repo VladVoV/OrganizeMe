@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import PostReply from "./CreateReply";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import AuthService from "../Services/auth.service";
+import AuthService from "../../Services/auth.service";
 
 const PostPage = () => {
     const user = AuthService.getCurrentUser();

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Pagination from "../Common/Pagination";
-import ListGroup from "../Components/ListGroup";
-import Posts from "../Components/Posts";
-import { paginate } from "../Common/Paginate";
-import Jumbotron from "../Common/Jumbotron";
+import Pagination from "../../Common/Pagination";
+import ListGroup from "../../Components/Forum/ListGroup";
+import Posts from "../../Components/Forum/Posts";
+import { paginate } from "../../Common/Paginate";
+import Jumbotron from "../../Common/Jumbotron";
 import axios from "axios";
-import AuthService from "../Services/auth.service";
+import AuthService from "../../Services/auth.service";
 
 const Dashboard = () => {
     const [allposts, setAllPosts] = useState([]);
