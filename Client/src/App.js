@@ -16,6 +16,7 @@ import PostPage from "./Pages/Forum/PostPage";
 import TodoList from "./Pages/To-Do List Page";
 import AddingTodo from "./Components/Todo/AddingTodo";
 import EditTodo from "./Components/Todo/EditTodo";
+import ArticlePage from "./Pages/ArticlePage";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/post/:id" element={<PostPage/>}/>
           <Route path="/to-do-create" element={<AddingTodo/>}/>
           <Route path="/edit/:id" element={<EditTodo/>}/>
+           <Route path="/articles" element={<ArticlePage/>}/>
       </Routes>
         );
 }

@@ -81,13 +81,7 @@ const PostPage = () => {
                     {post.description}
                 </p>
                 <div className="mt-1">
-                    Related Topics:
-                    {post.tags &&
-                        post.tags.map((tag) => (
-                            <span key={tag.name} className="badge badge-success m-1 p-2">
-                {tag.name}
-              </span>
-                        ))}
+
                     <div className="d-flex w-100 justify-content-between mt-3 mb-3">
                         <button
                             disabled={!user}

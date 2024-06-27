@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0dc53815-45d1-4668-815e-cb39528bced3" name="Changes" comment="Updated Todo List to have better design and functionality, started working on articles">
+      <change afterPath="$PROJECT_DIR$/Client/src/Pages/ArticlePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/models/article.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Server/routes/article.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/CSS/Calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/CSS/Calendar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/CSS/Todo/TodoList.css" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/CSS/Todo/TodoList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Common/Jumbotron.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Common/Jumbotron.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Components/Forum/Posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Components/Forum/Posts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Components/Navbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Components/User/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Components/User/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Components/User/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Components/User/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Components/User/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Components/User/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Pages/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Pages/Calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Pages/Forum/CreatePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Pages/Forum/CreatePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Pages/Forum/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Pages/Forum/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Pages/Forum/PostPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Pages/Forum/PostPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Pages/Main page.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Pages/Main page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/Pages/To-Do List Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/Pages/To-Do List Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/controllers/article.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/article.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/controllers/calendar.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/controllers/calendar.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/middlewares/authJwt.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/middlewares/authJwt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/models/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/routes/calendar.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/routes/calendar.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Server/server.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2U7AIdBQQG8xlCtNJ0rTyD3rkAA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;features&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;20.10.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;20.10.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vladv/WebstormProjects/organize-me/Client&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vladv\WebstormProjects\organize-me\Client" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vladv\WebstormProjects\organize-me\Client\src\Pages\Forum" />
+      <recent name="C:\Users\vladv\WebstormProjects\organize-me\Client\src\Pages\Board" />
+      <recent name="C:\Users\vladv\WebstormProjects\organize-me\Client\src\CSS\User" />
+      <recent name="C:\Users\vladv\WebstormProjects\organize-me\Client\src\CSS\Todo" />
+      <recent name="C:\Users\vladv\WebstormProjects\organize-me\Client\src\Components\Forum" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/Client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="server" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start:client" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/Client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start:client" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start:client" />
+        <item itemvalue="npm.server" />
+        <item itemvalue="npm.server" />
+        <item itemvalue="npm.server" />
+        <item itemvalue="npm.server" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0dc53815-45d1-4668-815e-cb39528bced3" name="Changes" comment="" />
+      <created>1692280167743</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692280167743</updated>
+      <workItem from="1692280169910" duration="952000" />
+      <workItem from="1692281173685" duration="4233000" />
+      <workItem from="1692376446492" duration="994000" />
+      <workItem from="1692814396900" duration="4115000" />
+      <workItem from="1692875808909" duration="1144000" />
+      <workItem from="1693595255783" duration="1837000" />
+      <workItem from="1693852725952" duration="3294000" />
+      <workItem from="1693936929592" duration="755000" />
+      <workItem from="1694027550694" duration="1226000" />
+      <workItem from="1694110800131" duration="5748000" />
+      <workItem from="1694338388887" duration="2136000" />
+      <workItem from="1694423176868" duration="1264000" />
+      <workItem from="1694424470230" duration="169000" />
+      <workItem from="1694462726107" duration="277000" />
+      <workItem from="1695813278698" duration="1384000" />
+      <workItem from="1696269641404" duration="8839000" />
+      <workItem from="1699738653868" duration="1194000" />
+      <workItem from="1701027403410" duration="3478000" />
+      <workItem from="1703701329710" duration="3157000" />
+      <workItem from="1703790823923" duration="3655000" />
+      <workItem from="1703859585034" duration="6800000" />
+      <workItem from="1703949416643" duration="4834000" />
+      <workItem from="1704320560127" duration="2541000" />
+      <workItem from="1704323159541" duration="622000" />
+      <workItem from="1704559776088" duration="54000" />
+      <workItem from="1705768487522" duration="623000" />
+      <workItem from="1706125712201" duration="4635000" />
+      <workItem from="1706181177662" duration="2451000" />
+      <workItem from="1706183676266" duration="1603000" />
+      <workItem from="1706382173739" duration="4894000" />
+      <workItem from="1706472284161" duration="2000" />
+      <workItem from="1706698354552" duration="834000" />
+      <workItem from="1706877187360" duration="451000" />
+      <workItem from="1706960277416" duration="2416000" />
+      <workItem from="1707076835554" duration="1019000" />
+      <workItem from="1707124511977" duration="1069000" />
+      <workItem from="1707127019817" duration="28000" />
+      <workItem from="1707127423268" duration="14000" />
+      <workItem from="1707295874194" duration="492000" />
+      <workItem from="1707421213107" duration="8002000" />
+      <workItem from="1707431143113" duration="598000" />
+      <workItem from="1707503986957" duration="5425000" />
+      <workItem from="1707577679048" duration="6582000" />
+      <workItem from="1707603848756" duration="358000" />
+      <workItem from="1707739879747" duration="2897000" />
+      <workItem from="1708516080305" duration="1524000" />
+      <workItem from="1708608697780" duration="14000" />
+      <workItem from="1708650312629" duration="141000" />
+      <workItem from="1708717128893" duration="1694000" />
+      <workItem from="1708790406662" duration="2077000" />
+      <workItem from="1708880091971" duration="3422000" />
+      <workItem from="1708903861255" duration="827000" />
+      <workItem from="1709068598615" duration="4731000" />
+      <workItem from="1709142938441" duration="1246000" />
+      <workItem from="1709375769365" duration="1805000" />
+      <workItem from="1709420401842" duration="1004000" />
+      <workItem from="1709483025518" duration="5245000" />
+      <workItem from="1709631644735" duration="5235000" />
+      <workItem from="1709805501736" duration="3764000" />
+      <workItem from="1709927679832" duration="7830000" />
+      <workItem from="1710023073397" duration="6120000" />
+      <workItem from="1710369053898" duration="793000" />
+      <workItem from="1710437525262" duration="7243000" />
+      <workItem from="1711035615936" duration="1344000" />
+      <workItem from="1711205678013" duration="2000" />
+      <workItem from="1711308964526" duration="3000" />
+      <workItem from="1711310357552" duration="202000" />
+      <workItem from="1711652377225" duration="1361000" />
+      <workItem from="1711708564504" duration="3000" />
+      <workItem from="1711710211828" duration="1259000" />
+      <workItem from="1711884282196" duration="10758000" />
+      <workItem from="1711980693067" duration="6869000" />
+      <workItem from="1712057195601" duration="7256000" />
+      <workItem from="1712157780608" duration="5220000" />
+      <workItem from="1712404132171" duration="6000" />
+      <workItem from="1712426969818" duration="8938000" />
+      <workItem from="1712488156648" duration="8777000" />
+      <workItem from="1712530207461" duration="979000" />
+      <workItem from="1712594154747" duration="644000" />
+      <workItem from="1712664274600" duration="1790000" />
+      <workItem from="1712774433689" duration="590000" />
+      <workItem from="1714037422182" duration="2543000" />
+      <workItem from="1714405459140" duration="21000" />
+      <workItem from="1715934053362" duration="3572000" />
+      <workItem from="1716047765499" duration="190000" />
+      <workItem from="1716060716683" duration="98000" />
+      <workItem from="1716122505932" duration="10706000" />
+      <workItem from="1716202865276" duration="8227000" />
+      <workItem from="1716238377852" duration="678000" />
+      <workItem from="1716330808810" duration="2289000" />
+      <workItem from="1716375729235" duration="916000" />
+      <workItem from="1716463329831" duration="1201000" />
+      <workItem from="1717278256562" duration="649000" />
+      <workItem from="1717325562685" duration="1685000" />
+      <workItem from="1717966684693" duration="178000" />
+      <workItem from="1719164388780" duration="7425000" />
+    </task>
+    <task id="LOCAL-00001" summary="Created some simple header and also created skeleton for my main page">
+      <created>1692281723402</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692281723402</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added react-router-dom, created Routes in App.js">
+      <created>1692814644976</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1692814644976</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Created simple skeleton for to-do list">
+      <created>1692820283256</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692820283256</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added express to package.json. Creates server side for application">
+      <created>1692822755322</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692822755322</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created simple To-Do List with possibility to create and view tasks">
+      <created>1693595586041</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1693595586041</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added mongoose and bodyParses to dependencies. Created 2 &quot;Create&quot; and &quot;View&quot; operations with To-Do List using MongoDB.">
+      <created>1693856049875</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1693856049875</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added possibility to delete tasks from To-Do List">
+      <created>1694027874440</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1694027874440</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added possibility to delete all tasks at once and made delete button to disappear if there are no tasks.">
+      <created>1694115965831</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1694115965831</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added react-calendar and created start layout for Calendar page">
+      <created>1694117454211</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1694117454211</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added http-proxy-middleware dependencies and created setupProxy, where set option &quot;changeOrigin&quot; to true">
+      <created>1695814099785</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1695814099785</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added axios, replaced `fetch` calls with `axios`. Created API route for fetching calendar data appear and created new mongoose Scheme for calendar data">
+      <created>1696278745069</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1696278745069</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added possibility to add events to calendar by using forms, also added nodemon in package.json">
+      <created>1701031829822</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1701031829822</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Created structured Backend side, added login and register possibility, created 3 roles for users: &quot;user&quot;, &quot;admin&quot;, &quot;moderator&quot;. Added all necessary dependencies.">
+      <option name="closed" value="true" />
+      <created>1703703660946</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1703703660946</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Updated todo and calendar events to server side structure, also fixed problems with &quot;exec&quot; and &quot;estimatedDocumentCount&quot; to use &quot;try/catch&quot; method, because it no longer accepts callbacks">
+      <option name="closed" value="true" />
+      <created>1703794949012</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1703794949012</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added login and register components and also services for it">
+      <option name="closed" value="true" />
+      <created>1703884516731</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1703884516731</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added login and register handling, also added different boards for user, admin and moderator">
+      <option name="closed" value="true" />
+      <created>1703892508472</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1703892508472</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added concurrently to start server and client simultaneously">
+      <option name="closed" value="true" />
+      <created>1706126222725</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1706126222725</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Updated login and register to use react-hook-forms">
+      <option name="closed" value="true" />
+      <created>1706181279162</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1706181279162</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Updated login and register to use react-hook-forms">
+      <option name="closed" value="true" />
+      <created>1706183192708</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1706183192708</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Changed styles of Login and Register">
+      <option name="closed" value="true" />
+      <created>1706387499761</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1706387499761</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Updated site that everyone user will have unique todos, fixed some minor problems with routing in logout method">
+      <option name="closed" value="true" />
+      <created>1707428380733</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1707428380733</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Added package.json and package-lock.json from Server Side">
+      <option name="closed" value="true" />
+      <created>1707428445529</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1707428445529</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update calendar event to be unique for every user">
+      <option name="closed" value="true" />
+      <created>1707430845620</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1707430845620</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Fixed small issues">
+      <option name="closed" value="true" />
+      <created>1707505145953</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1707505145953</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Added notification feature for to-do list">
+      <option name="closed" value="true" />
+      <created>1707587672126</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1707587672126</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added client side for forum">
+      <option name="closed" value="true" />
+      <created>1709928005572</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1709928005572</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Update code for forum, fixed problems with replies and likes">
+      <option name="closed" value="true" />
+      <created>1710029309190</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1710029309190</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Updated Todo List to have better design and functionality, started working on articles">
+      <option name="closed" value="true" />
+      <created>1712087699204</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1712087699204</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Created simple skeleton for to-do list" />
+    <MESSAGE value="Added express to package.json. Creates server side for application" />
+    <MESSAGE value="Created simple To-Do List with possibility to create and view tasks" />
+    <MESSAGE value="Added mongoose and bodyParses to dependencies. Created 2 &quot;Create&quot; and &quot;View&quot; operations with To-Do List using MongoDB." />
+    <MESSAGE value="Added possibility to delete tasks from To-Do List" />
+    <MESSAGE value="Added possibility to delete all tasks at once and made delete button to disappear if there are no tasks." />
+    <MESSAGE value="Added react-calendar and created start layout for Calendar page" />
+    <MESSAGE value="Added http-proxy-middleware dependencies and created setupProxy, where set option &quot;changeOrigin&quot; to true" />
+    <MESSAGE value="Added axios, replaced `fetch` calls with `axios`. Created API route for fetching calendar data appear and created new mongoose Scheme for calendar data" />
+    <MESSAGE value="Added possibility to add events to calendar by using forms, also added nodemon in package.json" />
+    <MESSAGE value="Created structured Backend side, added login and register possibility, created 3 roles for users: &quot;user&quot;, &quot;admin&quot;, &quot;moderator&quot;. Added all necessary dependencies." />
+    <MESSAGE value="Updated todo and calendar events to server side structure, also fixed problems with &quot;exec&quot; and &quot;estimatedDocumentCount&quot; to use &quot;try/catch&quot; method, because it no longer accepts callbacks" />
+    <MESSAGE value="Added login and register components and also services for it" />
+    <MESSAGE value="Added login and register handling, also added different boards for user, admin and moderator" />
+    <MESSAGE value="Added concurrently to start server and client simultaneously" />
+    <MESSAGE value="Updated login and register to use react-hook-forms" />
+    <MESSAGE value="Changed styles of Login and Register" />
+    <MESSAGE value="Updated site that everyone user will have unique todos, fixed some minor problems with routing in logout method" />
+    <MESSAGE value="Added package.json and package-lock.json from Server Side" />
+    <MESSAGE value="Update calendar event to be unique for every user" />
+    <MESSAGE value="Fixed small issues" />
+    <MESSAGE value="Added notification feature for to-do list" />
+    <MESSAGE value="Added client side for forum" />
+    <MESSAGE value="Update code for forum, fixed problems with replies and likes" />
+    <MESSAGE value="Updated Todo List to have better design and functionality, started working on articles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Todo List to have better design and functionality, started working on articles" />
+  </component>
+</project>

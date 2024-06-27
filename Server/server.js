@@ -48,8 +48,7 @@ async function initial() {
         if (count === 0) {
             await Promise.all([
                 new Role({ name: "user" }).save(),
-                new Role({ name: "moderator" }).save(),
-                new Role({ name: "admin" }).save()
+                new Role({ name: "moderator" }).save()
             ]);
 
             console.log("Roles added to the roles collection");
@@ -66,6 +65,7 @@ require('./routes/calendar.routes')(app);
 require('./routes/posts.routes')(app);
 require('./routes/replies.routes')(app);
 require('./routes/tags.routes')(app);
+require('./routes/article.routes')(app);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}`));

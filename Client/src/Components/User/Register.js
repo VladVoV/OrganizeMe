@@ -21,6 +21,9 @@ const Register = () => {
             const response = await AuthService.register(data.username, data.email, data.password);
             setMessage(response.data.message);
             setSuccessful(true);
+            await AuthService.login(data.username, data.password);
+            navigate("/profile");
+            window.location.reload();
         } catch (error) {
             const resMessage =
                 (error.response &&
@@ -59,14 +62,7 @@ const Register = () => {
         <Navbar/>
             <div className="col-md-12">
                 <div className="card card-container register-container">
-                    <img
-                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                        alt="profile-img"
-                        className="profile-img-card rounded-circle w-25 h-25"
-                    />
-
                     <form onSubmit={handleSubmit(onSubmit)} >
-                        {!successful && (
                             <div className="register-form">
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
@@ -108,20 +104,6 @@ const Register = () => {
                                     <button className="btn btn-primary btn-block">Sign Up</button>
                                 </div>
                             </div>
-                        )}
-
-                        {message && (
-                            <div className="form-group">
-                                <div
-                                    className={
-                                        successful ? "alert alert-success" : "alert alert-danger"
-                                    }
-                                    role="alert"
-                                >
-                                    {message}
-                                </div>
-                            </div>
-                        )}
                     </form>
                 </div>
             </div>

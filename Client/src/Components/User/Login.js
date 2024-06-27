@@ -50,11 +50,11 @@ const Login = () => {
                     <div
                         className="card card-container login-container"
                     >
-                        <img
-                            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                            alt="profile-img"
-                            className="profile-img-card rounded-circle w-25 h-25"
-                        />
+                        {/*<img*/}
+                        {/*    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"*/}
+                        {/*    alt="profile-img"*/}
+                        {/*    className="profile-img-card rounded-circle w-25 h-25"*/}
+                        {/*/>*/}
 
                         <form onSubmit={handleSubmit(onSubmit)} className="login-form">
                             <div className="form-group">

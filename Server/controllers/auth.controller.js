@@ -52,7 +52,7 @@ exports.signin = async (req, res) => {
             config.secret,
             {
                 algorithm: 'HS256',
-                expiresIn: 86400, // 24 hours
+                expiresIn: 86400,
             }
         );
 

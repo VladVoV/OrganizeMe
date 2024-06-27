@@ -68,7 +68,7 @@ const TodoList = () => {
                     }
                 });
             } else {
-                alert("Please allow notifications to receive task notifications.");
+                alert("Notifications is not supported in your browser.");
             }
         }, notificationTime * 1000);
     };
@@ -83,15 +83,16 @@ const TodoList = () => {
     ));
 
     return (
-        <div className='App'>
+        <div>
             <Navbar/>
+        <div className='App-todo'>
             <Link to={'/to-do-create'}>
                 <button
                     className={'btn btn-primary btn-nav'}>
                     Add new Todo
                 </button>
             </Link>
-                <Table label={`ToDo\'s von ${currentUser}`}
+                <Table label={`ToDo\'s`}
                        todoLength={todos.length}
                        todoList={todoList}
                 />
@@ -106,6 +107,7 @@ const TodoList = () => {
                 draggable
                 theme='colored'
             />
+        </div>
         </div>
     );
 };
