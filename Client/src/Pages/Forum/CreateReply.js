@@ -1,8 +1,8 @@
 import React from "react";
 import Joi from "joi-browser";
 import {ToastContainer } from "react-toastify";
-import Form from "../Common/Form";
-import { createReply } from "../Services/replyCreate.service";
+import Form from "../../Common/Form";
+import { createReply } from "../../Services/replyCreate.service";
 
 class PostReply extends Form {
     state = {

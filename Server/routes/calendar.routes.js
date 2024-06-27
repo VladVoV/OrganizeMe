@@ -16,4 +16,5 @@ module.exports = function(app) {
 
     app.post("/api/calendar", controller.createCalendarEvent)
 
+    app.delete("/api/calendar/:id", controller.deleteCalendarEvent);
 };

@@ -1,47 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Pagination from "../Common/Pagination";
-import ListGroup from "../Components/ListGroup";
-import Posts from "../Components/Posts";
-import { paginate } from "../Common/Paginate";
-import Jumbotron from "../Common/Jumbotron";
+import Pagination from "../../Common/Pagination";
+import ListGroup from "../../Components/Forum/ListGroup";
+import Posts from "../../Components/Forum/Posts";
+import { paginate } from "../../Common/Paginate";
+import Jumbotron from "../../Common/Jumbotron";
 import axios from "axios";
-import AuthService from "../Services/auth.service";
+import AuthService from "../../Services/auth.service";
+import Navbar from "../../Components/Navbar";
 
 const Dashboard = () => {
     const [allposts, setAllPosts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize] = useState(4);
     const [tags, setTags] = useState([]);
-    const [selectedTag, setSelectedTag] = useState({ _id: "1", name: "All Posts" });
-
+    const [selectedTag, setSelectedTag] = useState({ id: "1", name: "All Posts" });
+    const [isLoading, setIsLoading] = useState(true);
     const user = AuthService.getCurrentUser();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
+                setIsLoading(true);
                 const allpostsResponse = await axios.get("http://localhost:3000/api/posts/");
                 const tagsResponse = await axios.get("http://localhost:3000/api/tags/");
-
                 setAllPosts(allpostsResponse.data);
                 setTags([
-                    {
-                        _id: "1",
-                        name: "All Posts",
-                    },
+                    { id: "1", name: "All Posts" },
                     ...tagsResponse.data,
                 ]);
             } catch (error) {
                 console.error("Error fetching data:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
-
         fetchData();
-
-        // Clean-up function
-        return () => {
-            // Any cleanup code goes here
-        };
     }, []);
 
     const handlePageChange = (page) => {
@@ -49,7 +43,7 @@ const Dashboard = () => {
     };
 
     const handlePostDelete = (post) => {
-        // Handle post deletion logic
+        // Implement post deletion logic here
     };
 
     const handleTagSelect = (tag) => {
@@ -61,17 +55,27 @@ const Dashboard = () => {
         const filtered = allposts.filter((post) =>
             post.tags.some((postTag) => postTag.name === selectedTag.name)
         );
-        console.log(filtered);
         return filtered;
     };
 
-    const filtered = selectedTag._id === "1" ? allposts : getPosts();
+    const filtered = selectedTag.id === "1" ? allposts : getPosts();
     const posts = paginate(filtered, currentPage, pageSize);
+
+    if (isLoading) {
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="spinner-border text-primary" role="status" style={{ width: "3rem", height: "3rem" }}>
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
+    }
 
     if (allposts.length === 0) return <p>There are no posts in the database!</p>;
 
     return (
         <React.Fragment>
+            <Navbar />
             <Jumbotron />
             <div className="container">
                 <div className="row">
@@ -93,23 +97,23 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-9">
-                        <Posts posts={posts} onDelete={handlePostDelete} />
-                    </div>
                     <div className="col-3">
                         <ListGroup
                             items={tags}
-                            selectedTag={selectedTag}
-                            onTagSelect={handleTagSelect}
+                            selectedItem={selectedTag}
+                            onItemSelect={handleTagSelect}
                         />
                     </div>
-                    <Pagination
-                        itemCount={filtered.length}
-                        pageSize={pageSize}
-                        currentPage={currentPage}
-                        onPageChange={handlePageChange}
-                    />
+                    <div className="col-9">
+                        <Posts posts={posts} onDelete={handlePostDelete} />
+                    </div>
                 </div>
+                <Pagination
+                    itemCount={filtered.length}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                />
             </div>
         </React.Fragment>
     );

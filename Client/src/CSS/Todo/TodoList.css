@@ -1,0 +1,9 @@
+.App-todo {
+    color: #eeeeee;
+    width: 75vw;
+    margin: auto;
+}
+
+.not-empty {
+    display: none;
+}

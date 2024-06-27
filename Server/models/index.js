@@ -9,6 +9,7 @@ db.user = require("./user.model");
 db.role = require("./role.model");
 db.todo = require("./todo.model");
 db.calendar = require("./calendar.model");
+db.article = require("./article.model")
 
 db.ROLES = ["user", "admin", "moderator"];
 

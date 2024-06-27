@@ -10,11 +10,15 @@ module.exports = function(app) {
         next();
     });
 
-    app.use("/api/todos", authJwt.verifyToken);
+    app.use("/api/todos", authJwt.verifyToken)
+
+    app.get("/api/todos", controller.retrieveTodo)
+
+    app.get("/api/todos/:id", controller.retrieveTodoById)
 
     app.post("/api/todos", controller.createTodo)
 
-    app.get("/api/todos", controller.retrieveTodo)
+    app.put("/api/todos/update/:id", controller.updateTodo)
 
     app.delete("/api/todos/:id", controller.deleteTodoById)
 

@@ -1,52 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import Navbar from '../Components/Navbar';
+import React, { useEffect, useState} from 'react';
+import '../CSS/Todo/TodoList.css';
+import TodoComponent from '../Components/Todo/TodoItem';
+import {toast, ToastContainer} from 'react-toastify';
+import Table from '../Components/Todo/Table';
 import todoService from '../Services/todos.service';
+import Navbar from "../Components/Navbar";
+import {Link, useLocation} from "react-router-dom";
+import AuthService from "../Services/auth.service";
 
-function ToDoListPage() {
-    const [tasks, setTasks] = useState([]);
-    const [newTask, setNewTask] = useState('');
-    let [notificationTime, setNotificationTime] = useState(0);
+const TodoList = () => {
+    const [todos, setTodos] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null)
+    const [notificationTime, setNotificationTime] = useState(0);
     const location = useLocation();
 
+
     useEffect(() => {
-        todoService.fetchTodos()
-            .then((response) => setTasks(response.data))
-            .catch((error) => console.error('Error fetching data:', error));
-    }, []);
-
-    const addTask = async () => {
-        try {
-            const response = await todoService.createTodo(newTask);
-
-            if (response.status === 201) {
-                const task = response.data;
-                setTasks([...tasks, task]);
-                setNewTask('');
+        const user = AuthService.getCurrentUser();
+        if (user) {
+            setCurrentUser(user);
+        }
+        const fetchTodos = async () => {
+            try {
+                const res = await todoService.fetchTodos();
+                setTodos(res.data);
+            } catch (err) {
+                console.error(err);
+                toast.error(err.message);
             }
-        } catch (error) {
-            console.error('Error adding to-do:', error);
-        }
-    };
+        };
 
-    const deleteTask = async (taskId) => {
-        try {
-            await todoService.deleteTodo(taskId);
-            const updatedTasks = tasks.filter((task) => task._id !== taskId);
-            setTasks(updatedTasks);
-        } catch (error) {
-            console.error('Error deleting task:', error);
-        }
-    };
-
-    const deleteAllTasks = async () => {
-        try {
-            await todoService.deleteAllTodos();
-            setTasks([]);
-        } catch (error) {
-            console.error('Error deleting tasks:', error);
-        }
-    };
+        fetchTodos();
+    }, []);
 
     const handleNotification = (taskId) => {
         if (window.self !== window.top) {
@@ -55,14 +40,14 @@ function ToDoListPage() {
         }
 
         const userEnteredTime = prompt("Enter the time for notification (in seconds):");
-        notificationTime = parseInt(userEnteredTime, 10);
+        const notificationTime = parseInt(userEnteredTime, 10);
 
         if (isNaN(notificationTime) || notificationTime <= 0) {
             alert("Invalid time entered. Please enter a positive number.");
             return;
         }
 
-        const selectedTask = tasks.find((task) => task._id === taskId);
+        const selectedTask = todos.find((task) => task._id === taskId);
 
         if (!selectedTask) {
             alert("Task not found. Please select a valid task.");
@@ -73,76 +58,58 @@ function ToDoListPage() {
 
         setTimeout(() => {
             if (Notification && Notification.permission === "granted") {
-                const n = new Notification(`Task notification: ${selectedTask.text}`);
+                new Notification(`Task notification: ${selectedTask.text}`);
             } else if (Notification && Notification.permission !== "denied") {
                 Notification.requestPermission().then((status) => {
                     if (status === "granted") {
-                        const n = new Notification(`Task notification: ${selectedTask.text}`);
+                        new Notification(`Task notification: ${selectedTask.text}`);
                     } else {
                         alert("Please allow notifications to receive task notifications.");
                     }
                 });
             } else {
-                alert("Please allow notifications to receive task notifications.");
+                alert("Notifications is not supported in your browser.");
             }
         }, notificationTime * 1000);
     };
 
+    const todoList = () => todos.map((todo) => (
+        <TodoComponent
+            key={todo._id}
+            todo={todo}
+            setTodos={setTodos}
+            handleNotification={handleNotification}
+        />
+    ));
 
     return (
         <div>
-            <Navbar />
-            <div className="container mt-5">
-                <div className="d-flex justify-content-between">
-                    <h1>To-Do List</h1>
-                    {tasks.length === 0 ? null : (
-                        <button
-                            type="button"
-                            className="btn btn-danger btn-sm float-right"
-                            onClick={deleteAllTasks}
-                        >
-                            Delete all tasks
-                        </button>
-                    )}
-                </div>
-                <div className="input-group mb-3">
-                    <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Add a new task..."
-                        value={newTask}
-                        onChange={(e) => setNewTask(e.target.value)}
-                    />
-                    <div className="input-group-append">
-                        <button className="btn btn-primary" type="button" onClick={addTask}>
-                            Add
-                        </button>
-                    </div>
-                </div>
-                <ul className="list-group">
-                    {tasks.map((task) => (
-                        <li className="list-group-item" key={task._id}>
-                            {task.text}
-                            <button
-                                type="button"
-                                className="btn btn-danger btn-sm float-right"
-                                onClick={() => deleteTask(task._id)}
-                            >
-                                Delete
-                            </button>
-                            <button
-                                type="button"
-                                className="btn btn-success btn-sm float-right mr-2"
-                                onClick={() => handleNotification(task._id)}
-                            >
-                                Notify
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
+            <Navbar/>
+        <div className='App-todo'>
+            <Link to={'/to-do-create'}>
+                <button
+                    className={'btn btn-primary btn-nav'}>
+                    Add new Todo
+                </button>
+            </Link>
+                <Table label={`ToDo\'s`}
+                       todoLength={todos.length}
+                       todoList={todoList}
+                />
+
+            <ToastContainer
+                position='bottom-center'
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                draggable
+                theme='colored'
+            />
+        </div>
         </div>
     );
-}
+};
 
-export default ToDoListPage;
+export default TodoList;

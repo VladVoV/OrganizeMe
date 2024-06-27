@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import '../CSS/Login.css'
+import '../../CSS/User/Login.css'
 
-import AuthService from "../Services/auth.service";
-import Navbar from "./Navbar";
+import AuthService from "../../Services/auth.service";
+import Navbar from "../Navbar";
 
 const Login = () => {
     const { register, handleSubmit, setError, formState: { errors }, reset } = useForm();
@@ -50,11 +50,11 @@ const Login = () => {
                     <div
                         className="card card-container login-container"
                     >
-                        <img
-                            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-                            alt="profile-img"
-                            className="profile-img-card rounded-circle w-25 h-25"
-                        />
+                        {/*<img*/}
+                        {/*    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"*/}
+                        {/*    alt="profile-img"*/}
+                        {/*    className="profile-img-card rounded-circle w-25 h-25"*/}
+                        {/*/>*/}
 
                         <form onSubmit={handleSubmit(onSubmit)} className="login-form">
                             <div className="form-group">

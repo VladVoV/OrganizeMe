@@ -18,8 +18,6 @@ function Navbar() {
 
         if (user) {
             setCurrentUser(user);
-            setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-            setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
         }
 
         EventBus.on("logout", () => {
@@ -64,24 +62,17 @@ function Navbar() {
                         </Link>
                         </li>
                     )}
-                    {showModeratorBoard && (
+                    {currentUser && (
                         <li className="nav-item">
-                            <Link to={"/mod"} className="nav-link">
-                                Moderator Board
-                            </Link>
-                        </li>
-                    )}
-                    {showAdminBoard && (
-                        <li className="nav-item">
-                            <Link to={"/admin"} className="nav-link">
-                                Admin Board
+                            <Link to={"/dashboard"} className="nav-link">
+                                Dashboard
                             </Link>
                         </li>
                     )}
                     {currentUser && (
                         <li className="nav-item">
-                            <Link to={"/user"} className="nav-link">
-                                User
+                            <Link to={"/articles"} className="nav-link">
+                                Articles
                             </Link>
                         </li>
                     )}
@@ -113,13 +104,7 @@ function Navbar() {
                             </li>
                         </div>
                     )}
-                    {currentUser && (
-                        <li className="nav-item">
-                            <Link to={"/dashboard"} className="nav-link">
-                                Dashboard
-                            </Link>
-                        </li>
-                    )}
+
                 </ul>
             </nav>
 
